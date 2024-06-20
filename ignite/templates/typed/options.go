@@ -33,10 +33,10 @@ func (opts *Options) Validate() error {
 
 // ProtoPath returns the path to the proto folder within the generated app.
 func (opts *Options) ProtoPath(fname string) string {
-	return filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, fname)
+	return filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, fname)
 }
 
 // ProtoTypeImport Return the protobuf import statement for this type.
 func (opts *Options) ProtoTypeImport() *proto.Import {
-	return protoutil.NewImport(fmt.Sprintf("%s/%s/%s.proto", opts.AppName, opts.ModuleName, opts.TypeName.Snake))
+	return protoutil.NewImport(fmt.Sprintf("lavanet/%s/%s/%s.proto", opts.AppName, opts.ModuleName, opts.TypeName.Snake))
 }

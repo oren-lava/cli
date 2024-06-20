@@ -200,9 +200,9 @@ func configMigrationPreRunHandler(cmd *cobra.Command, session *cliui.Session) (e
 			}
 
 			// Confirm before migrating the config if there are uncommitted changes
-			if err := confirmWhenUncommittedChanges(session, appPath); err != nil {
-				return err
-			}
+			// if err := confirmWhenUncommittedChanges(session, appPath); err != nil {
+			// 	return err
+			// }
 		} else {
 			session.Printf("%s %s\n", icons.Info, colors.Infof(msgMigration, version, chainconfig.LatestVersion))
 		}

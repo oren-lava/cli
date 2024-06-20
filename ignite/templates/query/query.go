@@ -66,7 +66,7 @@ func NewGenerator(replacer placeholder.Replacer, opts *Options) (*genny.Generato
 //   - Existence of a service with name "Query" since that is where the RPCs will be added.
 func protoQueryModify(opts *Options) genny.RunFn {
 	return func(r *genny.Runner) error {
-		path := filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, "query.proto")
+		path := filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, "query.proto")
 		f, err := r.Disk.Find(path)
 		if err != nil {
 			return err
@@ -132,7 +132,7 @@ func protoQueryModify(opts *Options) genny.RunFn {
 			protoImports = append(protoImports, protoutil.NewImport(imp))
 		}
 		for _, f := range append(opts.ResFields.Custom(), opts.ReqFields.Custom()...) {
-			protopath := fmt.Sprintf("%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
+			protopath := fmt.Sprintf("lavanet/%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
 			protoImports = append(protoImports, protoutil.NewImport(protopath))
 		}
 		if err = protoutil.AddImports(protoFile, true, protoImports...); err != nil {

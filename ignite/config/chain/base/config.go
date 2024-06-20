@@ -179,7 +179,7 @@ func DefaultConfig() Config {
 	return Config{
 		Build: Build{
 			Proto: Proto{
-				Path:            "proto",
+				Path:            "proto/lavanet",
 				ThirdPartyPaths: []string{"third_party/proto", "proto_vendor"},
 			},
 		},

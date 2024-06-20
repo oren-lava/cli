@@ -70,6 +70,17 @@ func Transformer(ctx *plush.Context) genny.Transformer {
 		if err != nil {
 			return f, errors.Wrap(err, f.Name())
 		}
+		var fileName string
+		var content string
+		if !strings.Contains(f.Name(), "proto/lavanet") && strings.Contains(f.Name(), ".proto") {
+			orig := f.Name()
+			_ = orig
+			fileName = strings.Replace(f.Name(), "proto/", "proto/lavanet/", -1)
+			content = strings.Replace(s, "lava.", "lavanet.lava.", -1)
+		}
+		if fileName != "" {
+			return genny.NewFileS(fileName, content), nil
+		}
 		return genny.NewFileS(f.Name(), s), nil
 	})
 	t.StripExt = true

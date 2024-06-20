@@ -180,7 +180,7 @@ func moduleModify(replacer placeholder.Replacer, opts *PacketOptions) genny.RunF
 //   - Existence of a Oneof field named 'packet'.
 func protoModify(opts *PacketOptions) genny.RunFn {
 	return func(r *genny.Runner) error {
-		path := filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, "packet.proto")
+		path := filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, "packet.proto")
 		f, err := r.Disk.Find(path)
 		if err != nil {
 			return err
@@ -245,7 +245,7 @@ func protoModify(opts *PacketOptions) genny.RunFn {
 			protoImports = append(protoImports, protoutil.NewImport(imp))
 		}
 		for _, f := range append(opts.Fields.Custom(), opts.AckFields.Custom()...) {
-			protopath := fmt.Sprintf("%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
+			protopath := fmt.Sprintf("lavanet/%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
 			protoImports = append(protoImports, protoutil.NewImport(protopath))
 		}
 		if err := protoutil.AddImports(protoFile, true, protoImports...); err != nil {
@@ -287,7 +287,7 @@ func eventModify(replacer placeholder.Replacer, opts *PacketOptions) genny.RunFn
 //     elements in the file.
 func protoTxModify(opts *PacketOptions) genny.RunFn {
 	return func(r *genny.Runner) error {
-		path := filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, "tx.proto")
+		path := filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, "tx.proto")
 		f, err := r.Disk.Find(path)
 		if err != nil {
 			return err
@@ -329,7 +329,7 @@ func protoTxModify(opts *PacketOptions) genny.RunFn {
 			protoImports = append(protoImports, protoutil.NewImport(imp))
 		}
 		for _, f := range opts.Fields.Custom() {
-			protopath := fmt.Sprintf("%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
+			protopath := fmt.Sprintf("lavanet/%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
 			protoImports = append(protoImports, protoutil.NewImport(protopath))
 		}
 		if err := protoutil.AddImports(protoFile, true, protoImports...); err != nil {

@@ -27,7 +27,7 @@ var appBackendSourceWatchPaths = []string{
 	"app",
 	"cmd",
 	"x",
-	"proto",
+	"proto/lavanet",
 	"third_party",
 }
 

@@ -1,15 +1,11 @@
 package ignitecmd
 
 import (
-	"errors"
-
-	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
 
 	"github.com/ignite/cli/ignite/pkg/cliui"
 	"github.com/ignite/cli/ignite/pkg/placeholder"
-	"github.com/ignite/cli/ignite/pkg/xgit"
 	"github.com/ignite/cli/ignite/services/scaffolder"
 )
 
@@ -176,33 +172,32 @@ func gitChangesConfirmPreRunHandler(cmd *cobra.Command, _ []string) error {
 		return nil
 	}
 
-	appPath := flagGetPath(cmd)
 	session := cliui.New()
 
 	defer session.End()
 
-	return confirmWhenUncommittedChanges(session, appPath)
-}
-
-func confirmWhenUncommittedChanges(session *cliui.Session, appPath string) error {
-	cleanState, err := xgit.AreChangesCommitted(appPath)
-	if err != nil {
-		return err
-	}
-
-	if !cleanState {
-		session.Println(msgCommitPrefix)
-		if err := session.AskConfirm(msgCommitPrompt); err != nil {
-			if errors.Is(err, promptui.ErrAbort) {
-				return errors.New("No")
-			}
-
-			return err
-		}
-	}
-
 	return nil
 }
+
+// func confirmWhenUncommittedChanges(session *cliui.Session, appPath string) error {
+// 	cleanState, err := xgit.AreChangesCommitted(appPath)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	if !cleanState {
+// 		session.Println(msgCommitPrefix)
+// 		if err := session.AskConfirm(msgCommitPrompt); err != nil {
+// 			if errors.Is(err, promptui.ErrAbort) {
+// 				return errors.New("No")
+// 			}
+
+// 			return err
+// 		}
+// 	}
+
+// 	return nil
+// }
 
 func flagSetScaffoldType() *flag.FlagSet {
 	f := flag.NewFlagSet("", flag.ContinueOnError)

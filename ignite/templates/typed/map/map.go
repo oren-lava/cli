@@ -186,7 +186,7 @@ func protoRPCModify(opts *typed.Options) genny.RunFn {
 			protoImports = append(protoImports, protoutil.NewImport(imp))
 		}
 		for _, f := range opts.Fields.Custom() {
-			protoPath := fmt.Sprintf("%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
+			protoPath := fmt.Sprintf("lavanet/%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
 			protoImports = append(protoImports, protoutil.NewImport(protoPath))
 		}
 		// we already know an import exists, pass false for fallback.
@@ -539,7 +539,7 @@ func protoTxModify(opts *typed.Options) genny.RunFn {
 			protoImports = append(protoImports, protoutil.NewImport(imp))
 		}
 		for _, f := range opts.Fields.Custom() {
-			protoPath := fmt.Sprintf("%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
+			protoPath := fmt.Sprintf("lavanet/%[1]v/%[2]v/%[3]v.proto", opts.AppName, opts.ModuleName, f)
 			protoImports = append(protoImports, protoutil.NewImport(protoPath))
 		}
 		// we already know an import exists, pass false for fallback.

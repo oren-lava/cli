@@ -22,7 +22,7 @@ const (
 	componentQuery   = "query"
 	componentPacket  = "packet"
 
-	protoFolder = "proto"
+	protoFolder = "proto/lavanet"
 )
 
 // checkComponentValidity performs various checks common to all components to verify if it can be scaffolded.

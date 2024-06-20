@@ -117,7 +117,7 @@ func moduleOracleModify(replacer placeholder.Replacer, opts *OracleOptions) genn
 // Deprecated: This function is no longer maintained.
 func protoQueryOracleModify(replacer placeholder.Replacer, opts *OracleOptions) genny.RunFn {
 	return func(r *genny.Runner) error {
-		path := filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, "query.proto")
+		path := filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, "query.proto")
 		f, err := r.Disk.Find(path)
 		if err != nil {
 			return err
@@ -172,7 +172,7 @@ message QueryLast%[2]vIdResponse {int64 request_id = 1;}
 // Deprecated: This function is no longer maintained.
 func protoTxOracleModify(replacer placeholder.Replacer, opts *OracleOptions) genny.RunFn {
 	return func(r *genny.Runner) error {
-		path := filepath.Join(opts.AppPath, "proto", opts.AppName, opts.ModuleName, "tx.proto")
+		path := filepath.Join(opts.AppPath, "proto/lavanet", opts.AppName, opts.ModuleName, "tx.proto")
 		f, err := r.Disk.Find(path)
 		if err != nil {
 			return err

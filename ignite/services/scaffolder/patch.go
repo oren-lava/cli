@@ -82,7 +82,7 @@ func supportMsgServer(
 // isMsgServerDefined checks if the module uses the MsgServer convention for transactions
 // this is checked by verifying the existence of the tx.proto file.
 func isMsgServerDefined(appPath, appName, moduleName string) (bool, error) {
-	txProto, err := filepath.Abs(filepath.Join(appPath, "proto", appName, moduleName, "tx.proto"))
+	txProto, err := filepath.Abs(filepath.Join(appPath, "proto/lavanet", appName, moduleName, "tx.proto"))
 	if err != nil {
 		return false, err
 	}
